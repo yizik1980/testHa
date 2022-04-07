@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toggle button</title>
+    <style>
+        .btn-slide{
+            background-color: lightgray;
+            border: 1px solid gray;
+            padding: 6px 12px;
+            border-radius: 36px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<button id="toggle-btn" class="btn-slide">publish</button>
+
+<script>
+    var inCalss = 'in';
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('toggle-btn').addEventListener('click', function(e){
+            this.classList.contains(inCalss) ? this.classList.remove(inCalss): this.classList.add(inCalss);
+        });
+    });
+
+</script>
+</body>
+</html>
