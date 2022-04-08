@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { CommentData, CommentNode } from '../models/Comment';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
+
   root = new Array<CommentNode>();
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService:UserService) { }
   setCommentsTree(commentsData:Array<CommentData>):Array<CommentNode>{
     const hashList:{[key: string]: CommentNode} = {};
     let root:CommentData = {} as CommentData;

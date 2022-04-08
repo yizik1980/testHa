@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/User";
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class JsonService {
+export class UserService {
 
   private users = new Array<User>();
   get Users(){
@@ -19,10 +19,10 @@ export class JsonService {
   }
   constructor(private http: HttpClient) {}
 
-    getUsers():Observable<Array<User>>{
+    getUsers():Observable<{[key:string]:User}>{
       return this.http.get<User[]>('./assets/users.json')
-      .pipe(tap(res=>{
-        this.Users = res;
+      .pipe(map(res=>{
+        return  res.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
       }));
     }
 

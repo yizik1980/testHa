@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CommentNode } from 'src/app/models/Comment';
+import { User } from 'src/app/models/User';
 import { CommentsService } from 'src/app/services/comments.service';
-import { JsonService } from 'src/app/services/json.service';
 
 @Component({
   selector: 'app-comments-view',
@@ -8,12 +9,15 @@ import { JsonService } from 'src/app/services/json.service';
   styleUrls: ['./comments-view.component.scss'],
 })
 export class CommentsViewComponent implements OnInit {
+  comments:Array<CommentNode> = [];
+  usersHashMap:{[key:string]:User} = {};
   constructor(private commentsService: CommentsService) {}
-
+  
   ngOnInit(): void {
     this.commentsService.getComments()
     .subscribe((res) => {
       console.log(res);
+      this.comments = res;
     });
   }
 }
