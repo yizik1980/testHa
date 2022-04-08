@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Click Event</title>
+    <script>
+        function changeColor(){
+            document.body.style.backgroundColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        }
+    </script>
+</head>
+<body>
+
+<button onclick="changeColor()">Change</button>
+
+
+</body>
+</html>

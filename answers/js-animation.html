@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Animation</title>
+    <style>
+        .box {
+            width: 15px;
+            height: 15px;
+            background: red;
+            float: left;
+        }
+
+        button {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+        #stop {
+            left: 100px;
+        }
+    </style>
+    <script>
+        (function(){
+            var index;
+
+            function addBox() {
+                var el = document.createElement('div');
+                el.setAttribute('class', 'box');
+                document.body.appendChild(el);
+                index = setTimeout(addBox);
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                index = setTimeout(addBox);
+
+                document.getElementById('stop').addEventListener('click', function(){
+                    clearTimeout(index);
+                }, false);
+
+                document.getElementById('start').addEventListener('click', function(){
+                    setTimeout(addBox);
+                }, false);
+            });
+        })();
+    </script>
+</head>
+<body>
+
+
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+
+</body>
+</html>

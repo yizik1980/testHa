@@ -1,0 +1,212 @@
+:root {
+    --blue-color: rgb(13, 98, 179);
+    --red-color: rgb(254, 0, 0);
+    --blue-dark-color: rgb(26, 36, 123);
+    --black: #000208;
+    --light-blue-color: #66cdaa;
+    --gray: rgb(117 116 123);
+    --back-color: rgb(63 51 51);
+    --light-broan: rgba(255, 165, 0, 0.47);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+app-root {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+section,
+header {
+    display: block;
+}
+
+.between {
+    justify-content: stretch;
+}
+
+.around {
+    justify-content: space-around;
+}
+
+.evenly {
+    justify-content: space-evenly;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.boxes {
+    width: 80%
+}
+
+.center {
+    text-align: center;
+}
+
+.col {
+    margin-bottom: 1%;
+    width: 20%;
+    background-color: #777;
+}
+
+.boxes section:nth-of-type(3n) {
+    margin-right: 0px;
+}
+
+.boxes section {
+    flex: 0 1 auto;
+    text-align: center;
+    margin-right: 1%;
+    padding: 8% 0;
+    width: 32%;
+    margin-bottom: 1%;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.wrap {
+    clear: both;
+    padding: 1%;
+}
+
+.p1 {
+    padding: 1%;
+}
+
+.p3 {
+    padding: 3%;
+}
+
+.m1 {
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+
+.m2 {
+    margin: 2%
+}
+
+.light-blue {
+    background-color: var(--light-blue-color);
+}
+
+.blue {
+    background-color: blue;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.light-broan {
+    background-color: var(--light-broan);
+}
+
+.white {
+    background: #f0ead5;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 1%;
+    color: rgb(190 187 205);
+    position: relative;
+}
+
+.show.menu ul {
+    visibility: visible;
+}
+
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+.menu {
+    background-color: var(--back-color);
+    z-index: 1;
+}
+
+footer {
+    display: block;
+    background: var(--gray);
+    padding: 2% 0;
+}
+
+nav li:nth-of-type(n+1)::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 58%;
+    background-color: #fff;
+    position: absolute;
+    top: 8px;
+    left: 100%;
+}
+
+.full-size {
+    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (max-width: 880px) {
+    body {
+        padding: 3%;
+    }
+    .menu ul li {
+        display: block;
+        text-align: center;
+    }
+    .wrap {
+        padding: 0px;
+    }
+    .boxes,
+    .boxes section {
+        width: 100%;
+        margin: 2% 0 2% 0;
+    }
+    .col {
+        margin: 1%;
+        width: 100%;
+    }
+    .left,
+    .right {
+        float: none;
+    }
+    .flex {
+        display: block;
+    }
+}
