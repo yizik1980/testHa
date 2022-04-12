@@ -22,6 +22,7 @@ export class UserService {
     getUsers():Observable<{[key:string]:User}>{
       return this.http.get<User[]>('./assets/users.json')
       .pipe(map(res=>{
+        console.log(res);
         return  res.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
       }));
     }

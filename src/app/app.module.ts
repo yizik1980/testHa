@@ -5,12 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
 import { CommentsViewComponent } from './components/comments-view/comments-view.component';
+import { CommentItemComponent } from './components/comment-item/comment-item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CommentsViewComponent
+    CommentsViewComponent,
+    CommentItemComponent
   ],
   imports: [
     BrowserModule,

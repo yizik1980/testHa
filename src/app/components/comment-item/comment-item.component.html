@@ -1,0 +1,11 @@
+<div class="child-contents-container">
+    <div>
+        <p>{{node?.txt}}</p>
+        <div>
+            <div class="children-container" *ngIf="node?.children">
+                <app-comment-item *ngFor="let ch of node?.children" [node]="ch">
+                </app-comment-item>
+            </div>
+
+        </div>
+    </div>
