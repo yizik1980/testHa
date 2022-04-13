@@ -1,32 +1,31 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {User} from "../models/User";
-import { map, Observable, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../models/User';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   private users = new Array<User>();
-  get Users(){
+  get Users() {
     return this.users;
   }
-  set Users(val:Array<User>){
-    if(val){
+  set Users(val: Array<User>) {
+    if (val) {
       this.users = val;
     }
   }
-  constructor(private http: HttpClient) {}
+  constructor(private httpcall: HttpClient) {}
 
-    getUsers():Observable<{[key:string]:User}>{
-      return this.http.get<User[]>('./assets/users.json')
-      .pipe(map(res=>{
-        console.log(res);
-        return  res.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});
-      }));
-    }
-
-
-
+  getUsersComment(): Observable<{ [key: string]: User }> {
+    return this.httpcall.get<User[]>('./assets/users.json').pipe(
+      map((res) => {
+        return res.reduce(
+          (obj, item) => Object.assign(obj, { [item.id]: item }),
+          {}
+        );
+      })
+    );
+  }
 }

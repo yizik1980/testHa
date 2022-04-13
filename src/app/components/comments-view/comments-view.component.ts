@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { map, mergeMap, Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { map, mergeMap, Subscription, switchMap } from 'rxjs';
+import { merge } from 'rxjs/internal/operators/merge';
 import { tap } from 'rxjs/internal/operators/tap';
 import { CommentNode } from 'src/app/models/Comment';
 import { User } from 'src/app/models/User';
@@ -11,21 +12,29 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './comments-view.component.html',
   styleUrls: ['./comments-view.component.scss'],
 })
-export class CommentsViewComponent implements OnInit {
-  comments:Array<CommentNode> = [];
-  usersHashMap:{[key:string]:User} = {};
+export class CommentsViewComponent implements OnInit, OnDestroy {
+  comments: Array<CommentNode> = [];
+  usersHashMap: { [key: string]: User } = {};
   sub = new Subscription();
-  constructor(private commentsService: CommentsService, private userService:UserService) {}
-  
+  constructor(
+    private commentsService: CommentsService,
+    private userService: UserService
+  ) {}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   ngOnInit(): void {
- this.sub = this.commentsService.getComments()
-    .pipe(tap((res) => {
-      console.log(res);
-      this.comments = res;
-    }))
-    .pipe(mergeMap(this.userService.getUsers))
-    .pipe(tap(users=>{
-      this.usersHashMap = users;
-    })).subscribe();
+    this.sub = this.userService
+      .getUsersComment()
+      .pipe(
+        tap((users) => {
+          this.usersHashMap = users;
+        })
+      )
+      .pipe(switchMap(this.commentsService.getComments.bind(this.commentsService)))
+      .subscribe((res) => {
+        this.comments = res;
+      });
   }
 }
