@@ -8,13 +8,21 @@ import { map, Observable } from 'rxjs';
 })
 export class UserService {
   private users = new Array<User>();
+  private usersMapped:{ [key: string]: User } = {};
   get Users() {
     return this.users;
   }
   set Users(val: Array<User>) {
     if (val) {
+      this.usersMapped = val.reduce(
+        (obj, item) => Object.assign(obj, { [item.id]: item }),
+        {}
+      )
       this.users = val;
     }
+  }
+  getUser(id:number| undefined):User{
+    return id?  this.usersMapped[id]: {} as User;
   }
   constructor(private httpcall: HttpClient) {}
 
