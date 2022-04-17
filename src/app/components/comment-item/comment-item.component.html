@@ -1,6 +1,10 @@
 <div class="child-contents-container">
     <div>
-        <p>{{node?.txt}}</p>
+        <div class="flex">
+            <label>{{node?.user?.displayName}}</label>:
+            <p class="txt">{{node?.txt}}</p>
+        </div>
+
         <div>
             <div class="children-container" *ngIf="node?.children">
                 <app-comment-item *ngFor="let ch of node?.children" [node]="ch">

@@ -13,12 +13,12 @@ export class CommentItemComponent implements OnInit, AfterViewInit {
   node:CommentNode | undefined = { } as CommentNode;
   constructor(private userService:UserService) { }
   ngAfterViewInit(): void {
-    if(this.node)
-    this.node.user = this.userService.getUser(this.node?.ownerId);
+
   }
 
   ngOnInit(): void {
-    
+    if(this.node)
+    this.node.user = this.userService.getUser(this.node?.ownerId);
   }
 
 }

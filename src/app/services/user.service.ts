@@ -29,10 +29,11 @@ export class UserService {
   getUsersComment(): Observable<{ [key: string]: User }> {
     return this.httpcall.get<User[]>('./assets/users.json').pipe(
       map((res) => {
-        return res.reduce(
+        this.usersMapped =  res.reduce(
           (obj, item) => Object.assign(obj, { [item.id]: item }),
           {}
         );
+        return this.usersMapped;
       })
     );
   }
