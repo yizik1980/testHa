@@ -4,8 +4,26 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: aquamarine;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.space {
+    justify-content: space-around;
 }
 
 

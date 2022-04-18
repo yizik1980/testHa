@@ -1,3 +1,6 @@
 <div class="commentsTree">
-    <app-comment-item *ngFor="let ch of comments" [node]="ch"></app-comment-item>
+    <div class="win over-scroll">
+        <app-comment-item *ngFor="let ch of comments" [node]="ch"></app-comment-item>
+    </div>
+
 </div>

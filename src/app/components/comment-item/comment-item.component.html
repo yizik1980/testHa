@@ -1,8 +1,10 @@
 <div class="child-contents-container">
     <div>
-        <div class="flex">
-            <label>{{node?.user?.displayName}}</label>:
-            <p class="txt">{{node?.txt}}</p>
+        <div class="flex txt center ">
+            <aside *ngIf="hasPhoto" class="frame" [ngStyle]="{backgroundImage:'url(assets/images/'+node?.ownerId+'.jpg)'}">
+            </aside>
+            <b>{{node?.user?.displayName}}</b>:
+            <p>{{node?.txt}}</p>
         </div>
 
         <div>
